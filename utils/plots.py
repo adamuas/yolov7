@@ -76,7 +76,11 @@ def plot_one_box_PIL(box, img, color=None, label=None, line_thickness=3):
     draw.rectangle(box, width=line_thickness, outline=tuple(color))  # plot
     if label:
         fontsize = max(round(max(img.size) / 40), 12)
-        font = ImageFont.truetype("Arial.ttf", fontsize)
+        try:
+            font = ImageFont.truetype("Arial.ttf", fontsize)
+        except Exception as err:
+            font = ImageFont.load_default()
+
         txt_width, txt_height = font.getsize(label)
         draw.rectangle([box[0], box[1] - txt_height + 4, box[0] + txt_width, box[1]], fill=tuple(color + [128]))
         draw.text((box[0], box[1] - txt_height + 1), label, fill=(255, 255, 255, 128), font=font)
@@ -90,7 +94,10 @@ def plot_one_box_with_pillow(box, img, color=None, label=None, line_thickness=3)
     draw.rounded_rectangle(xy=box, radius=5, width=line_thickness, outline=tuple(color))  # plot
     if label:
         fontsize = max(round(max(img.size) / 80), 12)
-        font = ImageFont.truetype("Arial.ttf", fontsize)
+        try:
+            font = ImageFont.truetype("Arial.ttf", fontsize)
+        except Exception as err:
+            font = ImageFont.load_default()
         txt_width, txt_height = font.getsize(label)
         draw.rounded_rectangle([box[0], box[1] - txt_height + 4, box[0] + txt_width, box[1]], radius=15, fill=tuple(color + [199]))
         draw.text((box[0], box[1] - txt_height + 1), label, fill=(255, 255, 255, 199), font=font)
