@@ -32,9 +32,19 @@ def get_class_colorcode(class_name:str) -> tuple:
     """ 
     Returns Colour code  for the class name given 
     """
-    VEHICLE_CODE = [255, 153, 0]
+    PERSON = [79, 8, 167]
+    VEHICLE_CODE = [255, 127, 0]
+    PERSONAL_ITEMS_CODE = [0, 127, 255]
+    WEAPONS = [255, 0, 255]
+    LANDMARKS = [0, 255, 0]
+
     default_colour_codes = {
-        'person': [ 102, 0, 153 ],
+        'person': PERSON,
+        'backpack': PERSONAL_ITEMS_CODE,
+        'handbag': PERSONAL_ITEMS_CODE,
+        'suitcase': PERSONAL_ITEMS_CODE,
+        'clock': LANDMARKS,
+        'knife': WEAPONS,
         'car': VEHICLE_CODE,
         'truck': VEHICLE_CODE,
         'airplane': VEHICLE_CODE,
@@ -44,7 +54,7 @@ def get_class_colorcode(class_name:str) -> tuple:
     color_code = default_colour_codes.get(class_name, None)
 
     if color_code is None:
-        return  [ 255, 156, 0]
+        return  [ 255, 255, 0]
     else:
         return color_code
 
